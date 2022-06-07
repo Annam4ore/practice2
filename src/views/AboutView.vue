@@ -16,7 +16,6 @@ export default {
   }),
   methods: {
     getData(text) {
-      console.log('外層資料',text)
       this.text = text
     },
     addNum() {
