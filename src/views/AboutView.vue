@@ -1,7 +1,7 @@
 <template>
 <v-container>
-  <h1 class="mb-5">This is an about page</h1>
-  <CardList :card-item="cardDatas" @push-data="getData"></CardList>
+  <h1 class="mb-5">This is an about page: {{ text }} / {{ num }} </h1>
+  <CardList :card-item="cardDatas" @push-data="getData" @add-num="addNum"></CardList>
   
 </v-container>
 </template>
@@ -10,11 +10,17 @@ import CardList from '../components/CardList.vue'
 import { cardData } from '../db'
 export default {
   data: () => ({
-    cardDatas: cardData
+    cardDatas: cardData,
+    text: '',
+    num: 0
   }),
   methods: {
     getData(text) {
       console.log('外層資料',text)
+      this.text = text
+    },
+    addNum() {
+      this.num ++
     }
   }, 
   mounted()  {
