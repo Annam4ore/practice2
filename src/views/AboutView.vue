@@ -1,7 +1,9 @@
 <template>
 <v-container>
+  <v-btn color="green" @click="addCardList">最外層新增卡片</v-btn>
+  <v-btn color="purple" @click="addPrice">最外層生椰++</v-btn>
   <h1 class="mb-5">This is an about page: {{ text }} / {{ num }} </h1>
-  <CardList :card-item="cardDatas" @push-data="getData" @add-num="addNum"></CardList>
+  <CardList ref="cardList" :card-item="cardDatas" @push-data="getData" @add-num="addNum"></CardList>
   
 </v-container>
 </template>
@@ -20,6 +22,12 @@ export default {
     },
     addNum() {
       this.num ++
+    },
+    addCardList() {
+      this.$refs.cardList.addSecondCard()
+    },
+    addPrice() {
+      this.$refs.cardList.changePrice()
     }
   }, 
   mounted()  {

@@ -1,7 +1,7 @@
 <template>
 <div>
     <v-btn color="blue" @click="addData">新增產品資料</v-btn>
-    <v-card class="mb-5" v-for="item in product" :key="item.name">
+    <v-card class="mb-5" v-for="(item , i) in product" :key="item.name + i">
         <v-card-title class="subheading font-weight-bold">
             {{ item.name }} - {{ text }}
         </v-card-title>
@@ -42,6 +42,16 @@ export default {
   props: ['product'],
   methods: {
       changePrice() {
+        console.log('改price')
+        this.innerData.forEach((item) => {
+            // console.log(item)
+            if(item.name === '生椰美式'){
+                item.price++;
+            }
+        })
+        // this.innerData[0].price ++;
+      },
+      changeText() {
         this.text = '外層呼叫內層方法而修改'
       },
       addData () {
@@ -52,13 +62,8 @@ export default {
         obj.price= 30
         obj.salePrice = 25
         this.innerData.unshift(obj)
-        console.log(this.innerData)
+        // console.log(this.innerData)
     }
-  },
-  watch: {
-      addData () {
-          this.innerData = this.product
-      }
   },
   mounted () {
     this.innerData = this.product
